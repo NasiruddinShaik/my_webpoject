@@ -8,26 +8,34 @@ const imageArray = [
 ];
 
 
-const realImage = document.getElementById("slideshow-imag");
+const realImage = document.getElementById("slideshow-image");
     let imageIndex = 0; 
     let activeImageIndex = imageIndex;
 
     realImage.src = imageArray[imageIndex];
 
+    function setPagination () {
+    let paginationHolder = document.getElementById("pagination");
+        paginationHolder.innerText = (activeImageIndex + 1) + "/" + imageArray.length;
+
+    }
     function previous() {
         activeImageIndex--;
-        if(activeImageIndex <= 0) {
-            activeImageIndex = realImage.length - 1;
+        if(activeImageIndex < 0) {
+            activeImageIndex = imageArray.length - 1;
+    
         }
         realImage.src = imageArray[activeImageIndex]; 
+        setPagination();
     }
 
 
     function nextImage () {
         activeImageIndex++;
-        if(activeImageIndex >= realImage.length){
-            activeImageIndex =imageIndex +1;
+        if(activeImageIndex >= imageArray.length){
+            activeImageIndex =imageIndex;
         }
         realImage.src = imageArray[activeImageIndex]; 
+        setPagination();
     }
 
